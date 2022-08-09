@@ -1,11 +1,22 @@
 // No cambies los nombres de las funciones.
 
+const { forEach } = require("../../JavaScript-6/tareas/tareas");
+
 function crearGato(nombre, edad) {
   // Crear un nuevo objeto con la propiedad "nombre" y el valor definido como el argumento "nombre".
   // Agrega una propiedad al objeto con el nombre "edad" y usa el valor definido en el argumento "edad"
   // Agrega un método (funcion) llamado "meow" que devuelva el string "Meow!"
   // Devuelve el objeto
   // Tu código:
+  let gato={
+    nombre: nombre,
+    edad: edad,
+   meow: function (){
+      return "Meow!";
+    }
+  }
+  return gato;
+   
 }
 
 function agregarPropiedad(objeto, propiedad) {
@@ -13,19 +24,28 @@ function agregarPropiedad(objeto, propiedad) {
   // Devuelve el objeto
   // NOTA: El nombre de la propiedad no es "propiedad", el nombre es el valor del argumento llamado "propiedad" (una cadena/string)
   // Tu código:
+  objeto[propiedad]=null
+  return objeto;
 }
 
-function invocarMetodo(objeto, metodo) {
+function invocarMetodo(_objeto, metodo) {
   // "metodo" es una cadena que contiene el nombre de un método (funcion) en el objeto
   // Invoca ese método
   // No necesita un 'return'
   // Tu código:
+   _objeto[metodo]() ;
+    
+    
+
+  
 }
 
 function multiplicarNumeroDesconocidoPorCinco(objetoMisterioso) {
   // "objetoMisterioso" tiene una propiedad llamada "numeroMisterioso"
   // Multiplica el numeroMisterioso por 5 y devuelve el producto
   // Tu código:
+  let resultado= (objetoMisterioso.numeroMisterioso * 5)
+  return resultado
 }
 
 function eliminarPropiedad(objeto, unaPropiedad) {
@@ -33,18 +53,33 @@ function eliminarPropiedad(objeto, unaPropiedad) {
   // tip: tenes que usar bracket notation
   // Devuelve el objeto
   // Tu código:
+  delete objeto [unaPropiedad] 
+  return objeto
 }
 
 function nuevoUsuario(nombre, email, password) {
   // Crea un nuevo objeto con las propiedades coincidiendo con los argumentos que se pasan a la función
   // Devuelve el objeto
   // Tu código:
+  
+  let  usuario= {
+    
+      nombre : nombre,
+      email : email,
+      password: password,
+    }
+  
+  return usuario
 }
 
 function tieneEmail(usuario) {
   // Devuelve "true" si el usuario tiene un valor definido para la propiedad "email"
   // De lo contratio, devuelve "false"
   // Tu código:
+
+  if (usuario.email==null){
+    return false
+  } else return true
 }
 
 function tienePropiedad(objeto, propiedad) {
@@ -52,6 +87,10 @@ function tienePropiedad(objeto, propiedad) {
   // "propiedad" es un string
   // De lo contrario, devuelve "false"
   // Tu código:
+  if (objeto.hasOwnProperty(propiedad)){
+    return true
+  } else return false
+
 }
 
 function verificarPassword(usuario, password) {
@@ -59,12 +98,18 @@ function verificarPassword(usuario, password) {
   // Devuelve "true" si coinciden
   // De lo contrario, devuelve "false"
   // // Tu código:
+  if (usuario.password== password){
+    return true
+  } else return false
 }
 
 function actualizarPassword(usuario, nuevaPassword) {
   // Reemplaza la contraseña existente en el objeto "usuario" con el valor de "nuevaPassword"
   // Devuelve el objeto
   // Tu código:
+
+  usuario.password=nuevaPassword
+  return usuario
 }
 
 function agregarAmigo(usuario, nuevoAmigo) {
@@ -72,6 +117,8 @@ function agregarAmigo(usuario, nuevoAmigo) {
   // Agrega "nuevoAmigo" al final de ese array
   // Devuelve el objeto "usuario"
   // // Tu código:
+  usuario.amigos.push(nuevoAmigo)
+  return usuario
 }
 
 function pasarUsuarioAPremium(usuarios) {
@@ -80,18 +127,27 @@ function pasarUsuarioAPremium(usuarios) {
   // Define cada propiedad "esPremium" de cada objeto como "true"
   // Devuelve el array de usuarios
   // Tu código:
+  usuarios.forEach ((usuario)=> (usuario.esPremium =true))
+  
+  return usuarios
 }
 
-function sumarLikesDeUsuario(usuario) {
+function sumarLikesDeUsuario(_usuario) {
   // "usuario" tiene una propiedad llamada "posts" que es un array
   // "posts" es un array de objetos "post"
   // Cada objeto "post" tiene una propiedad llamada "likes" que es un entero (int/integer)
   // Suma todos los likes de todos los objetos "post"
   // Devuelve la suma
   // Tu código:
+
+  let sumaLikes = 0;
+  _usuario.posts.forEach((post)=>{
+    sumaLikes = sumaLikes + post.likes
+  })
+  return sumaLikes
 }
 
-function agregarMetodoCalculoDescuento(producto) {
+function agregarMetodoCalculoDescuento(_producto) {
   // Agregar un método (función) al objeto "producto" llamado "calcularPrecioDescuento"
   // Este método debe multiplicar el "precio" del "producto" ("producto.precio" o "producto[precio]") y "porcentajeDeDescuento" para obtener el descuento
   // El método resta el descuento del precio y devuelve el precio con descuento
@@ -101,6 +157,10 @@ function agregarMetodoCalculoDescuento(producto) {
   // producto.porcentajeDeDescuento -> 0.2 (o simplemente ".2")
   // producto.calcularPrecioDescuento() -> 20 - (20 * 0.2)
   // Tu código:
+ _producto.calcularPrecioDescuento= function(){
+    return  _producto.precio - (_producto.precio*_producto.porcentajeDeDescuento)
+    
+  }; return _producto
 }
 
 // No modificar nada debajo de esta línea, sino no correrán los test!
